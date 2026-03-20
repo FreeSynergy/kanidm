@@ -1,0 +1,31 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # daily at 04:00 UTC
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/kanidm/kanidm.git
+          git fetch upstream master
+
+      - name: Merge upstream
+        run: |
+          git config user.name "FreeSynergy Bot"
+          git config user.email "bot@freesynergy.net"
+          git merge upstream/master --no-edit --allow-unrelated-histories
+
+      - name: Push to fork
+        run: git push origin master
