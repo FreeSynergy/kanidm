@@ -1,0 +1,150 @@
+name: FSN Build & Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g. v1.2.3)'
+        required: true
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            binaries: "kanidmd kanidm"
+            archive: kanidm-linux-x86_64.tar.gz
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            binaries: "kanidmd kanidm"
+            archive: kanidm-linux-aarch64.tar.gz
+          - os: macos-13
+            target: x86_64-apple-darwin
+            binaries: "kanidmd kanidm"
+            archive: kanidm-macos-x86_64.tar.gz
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            binaries: "kanidmd kanidm"
+            archive: kanidm-macos-aarch64.tar.gz
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            binaries: "kanidmd.exe kanidm.exe"
+            archive: kanidm-windows-x86_64.zip
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Install Linux build deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential clang libclang-dev cmake \
+            libssl-dev pkg-config
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }} -p kanidmd -p kanidm_tools
+
+      - name: Package (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          for bin in ${{ matrix.binaries }}; do
+            cp target/${{ matrix.target }}/release/$bin . 2>/dev/null || true
+          done
+          tar czf ${{ matrix.archive }} ${{ matrix.binaries }}
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          foreach ($bin in "${{ matrix.binaries }}".Split(" ")) {
+            Copy-Item "target\${{ matrix.target }}\release\$bin" . -ErrorAction SilentlyContinue
+          }
+          Compress-Archive -Path ${{ matrix.binaries }}.Split(" ") -DestinationPath ${{ matrix.archive }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.archive }}
+          path: ${{ matrix.archive }}
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Resolve version
+        id: ver
+        run: |
+          TAG="${{ github.ref_name }}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.version }}"
+          fi
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Generate fsn-package.toml
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          TAG="${{ steps.ver.outputs.tag }}"
+          REPO="https://github.com/${{ github.repository }}/releases/download/${TAG}"
+          cat > fsn-package.toml << EOF
+          [package]
+          id = "kanidm"
+          name = "Kanidm"
+          version = "${VERSION}"
+          category = "server"
+          type = "app"
+          description = "A modern, fast identity management platform (LDAP, OAuth2, SCIM)"
+          tags = ["auth", "identity", "ldap", "oauth2", "scim", "sso"]
+          icon = "kanidm"
+          upstream = "https://github.com/kanidm/kanidm"
+
+          [app]
+          binaries = [
+            { os = "linux",   arch = "x86_64",  url = "${REPO}/kanidm-linux-x86_64.tar.gz" },
+            { os = "linux",   arch = "aarch64", url = "${REPO}/kanidm-linux-aarch64.tar.gz" },
+            { os = "macos",   arch = "x86_64",  url = "${REPO}/kanidm-macos-x86_64.tar.gz" },
+            { os = "macos",   arch = "aarch64", url = "${REPO}/kanidm-macos-aarch64.tar.gz" },
+            { os = "windows", arch = "x86_64",  url = "${REPO}/kanidm-windows-x86_64.zip" },
+          ]
+          EOF
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          name: "Kanidm ${{ steps.ver.outputs.tag }}"
+          body: |
+            Native binaries for Linux (x86_64, aarch64), macOS (x86_64, aarch64), Windows (x86_64).
+            Identity management — upstream: https://github.com/kanidm/kanidm
+          files: |
+            artifacts/*
+            fsn-package.toml
