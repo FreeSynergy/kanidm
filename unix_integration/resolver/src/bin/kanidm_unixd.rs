@@ -1127,7 +1127,7 @@ async fn main_inner(clap_args: clap::ArgMatches) -> ExitCode {
 
     // On linux, notify systemd.
     #[cfg(target_os = "linux")]
-    let _ = sd_notify::notify(true, &[sd_notify::NotifyState::Ready]);
+    let _ = sd_notify::notify(&[sd_notify::NotifyState::Ready]);
 
     loop {
         tokio::select! {
