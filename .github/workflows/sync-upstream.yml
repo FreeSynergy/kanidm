@@ -8,11 +8,13 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout fork
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -28,4 +30,4 @@ jobs:
           git merge upstream/master --no-edit --allow-unrelated-histories
 
       - name: Push to fork
-        run: git push origin master
+        run: git push origin main
