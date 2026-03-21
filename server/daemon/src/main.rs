@@ -854,9 +854,8 @@ async fn kanidm_main(config: Configuration, opt: KanidmdParser) -> ExitCode {
                 #[cfg(target_os = "linux")]
                 {
                     let _ = sd_notify::notify(&[sd_notify::NotifyState::Ready]);
-                    let _ = sd_notify::notify(
-                        &[sd_notify::NotifyState::Status("Started Kanidm 🦀")],
-                    );
+                    let _ =
+                        sd_notify::notify(&[sd_notify::NotifyState::Status("Started Kanidm 🦀")]);
                 };
 
                 match sctx {
