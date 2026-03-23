@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name "FreeSynergy Bot"
           git config user.email "bot@freesynergy.net"
-          git merge upstream/master --no-edit --allow-unrelated-histories
+          git merge upstream/master --no-edit --allow-unrelated-histories -X theirs
 
       - name: Push to fork
         run: git push origin main
