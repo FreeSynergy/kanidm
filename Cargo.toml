@@ -139,7 +139,7 @@ kanidm-hsm-crypto = { version = "^0.3.5" }
 
 anyhow = { version = "1.0.102" }
 argon2 = { version = "0.5.3", features = ["alloc"] }
-askama = { version = "0.15.5" }
+askama = { version = "0.15.6" }
 askama_web = { version = "0.15.2", features = ["axum-0.8"] }
 async-trait = "^0.1.89"
 axum = { version = "0.8.8", features = [
@@ -167,7 +167,7 @@ clap_complete = "^4.6.0"
 chrono = "^0.4.44"
 compact_jwt = "^0.5.5"
 concread = "^0.5.10"
-cron = "0.15.0"
+cron = "0.16.0"
 crossbeam = "0.8.4"
 crypto-glue = "^0.1.16"
 csv = "1.4.0"
