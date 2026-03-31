@@ -1,0 +1,16 @@
+name: Release OCI Image
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  oci:
+    name: Build & Push OCI Image
+    uses: FreeSynergy/fs-ci/.github/workflows/release-oci.yml@main
+    with:
+      image-name: kanidm
+    secrets:
+      GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
