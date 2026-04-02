@@ -165,7 +165,7 @@ clap = { version = "4.6.0", features = ["derive", "env"] }
 clap_complete = "^4.6.0"
 # Forced by saffron/cron
 chrono = "^0.4.44"
-compact_jwt = "^0.5.5"
+compact_jwt = "^0.5.6"
 concread = "^0.5.10"
 cron = "0.16.0"
 crossbeam = "0.8.4"
@@ -187,7 +187,7 @@ hashbrown = { version = "0.16.1", features = ["serde", "inline-more"] }
 hex = "^0.4.3"
 http = "1.4.0"
 http-body-util = "0.1"
-hyper = { version = "1.8.1" }
+hyper = { version = "1.9.0" }
 hyper-util = { version = "0.1.20", features = ["server", "tokio"] }
 idlset = "^0.2.5"
 image = { version = "0.25.9", default-features = false, features = [
@@ -199,8 +199,8 @@ itertools = "0.14.0"
 jsonschema = "0.45.0"
 ldap3_client = "^0.7.0"
 ldap3_proto = { version = "^0.7.0", features = ["serde"] }
-lettre = { version = "0.11.19", default-features = false }
-libc = "0.2.183"
+lettre = { version = "0.11.20", default-features = false }
+libc = "0.2.184"
 libnss = "^0.9.0"
 lodepng = "3.12.2"
 lru = "0.16.3"
@@ -289,7 +289,7 @@ utoipa = { version = "5.4.0", features = ["url", "uuid"] }
 utoipa-swagger-ui = { version = "9.0.2", default-features = false, features = [
     "vendored",
 ] }
-uuid = "^1.22.0"
+uuid = "^1.23.0"
 webauthn-authenticator-rs = { version = "0.6.0-dev", default-features = false }
 webauthn-rs = { version = "0.6.0-dev", features = ["preview-features"] }
 webauthn-rs-core = "0.6.0-dev"
