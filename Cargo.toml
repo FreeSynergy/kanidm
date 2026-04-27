@@ -177,11 +177,11 @@ dyn-clone = "^1.0.20"
 enum-iterator = "2.3.0"
 fantoccini = "0.22.0"
 filetime = "^0.2.27"
-fs4 = "^1.0.1"
+fs4 = "^1.0.2"
 futures = "^0.3.32"
 futures-util = { version = "^0.3.32", features = ["sink"] }
 gethostname = "1.1.0"
-gix = { version = "0.81.0", default-features = false, features = ["sha1"] }
+gix = { version = "0.82.0", default-features = false, features = ["sha1"] }
 haproxy-protocol = { version = "0.0.4" }
 hashbrown = { version = "0.17.0", features = ["serde", "inline-more"] }
 hex = "^0.4.3"
@@ -298,4 +298,4 @@ whoami = "^2.1.1"
 walkdir = "2"
 x509-cert = "0.2.5"
 yescrypt = "0.1.0-rc.5"
-zxcvbn = "3.1.0"
+zxcvbn = "3.1.1"
