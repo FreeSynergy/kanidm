@@ -143,12 +143,12 @@ sparkle_resolver_common = { path = "./unix_integration/resolver_common", version
 scim_proto = { path = "./libs/scim_proto", version = "=1.10.0-dev" }
 sketching = { path = "./libs/sketching", version = "=1.10.0-dev" }
 
-kanidm-hsm-crypto = { version = "^0.3.5" }
+kanidm-hsm-crypto = { version = "^0.3.6" }
 
 anyhow = { version = "1.0.102" }
 argon2 = { version = "0.5.3", features = ["alloc"] }
-askama = { version = "0.15.6" }
-askama_web = { version = "0.15.2", features = ["axum-0.8"] }
+askama = { version = "0.16.0" }
+askama_web = { version = "0.16.0", features = ["axum-0.8"] }
 async-trait = "^0.1.89"
 axum = { version = "0.8.8", features = [
     "form",
@@ -211,7 +211,7 @@ lettre = { version = "0.11.21", default-features = false }
 libc = "0.2.186"
 libnss = "^0.9.0"
 lodepng = "3.12.2"
-lru = "0.17.0"
+lru = "0.18.0"
 mathru = "0.16.2"
 md4 = "0.10.2"
 md-5 = "0.10.6"
