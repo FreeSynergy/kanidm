@@ -2408,9 +2408,9 @@ dependencies = [
 
 [[package]]
 name = "gix-fs"
-version = "0.21.0"
+version = "0.21.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4b5d9f7e55a0f9a936a877fa4f9758692a308550a39a45684286941a20a8e5c0"
+checksum = "1e1967daac9848757c47c2aef0c57bcadc1a897347f559778249bf286a536c86"
 dependencies = [
  "bstr",
  "fastrand",
@@ -3901,14 +3901,11 @@ dependencies = [
  "md-5",
  "md4",
  "rand 0.10.1",
- "rustls",
  "serde",
  "sha-crypt",
  "sha2 0.11.0-rc.5",
  "sketching",
  "tracing",
- "uuid",
- "x509-cert",
 ]
 
 [[package]]
@@ -6803,7 +6800,6 @@ version = "1.10.0-dev"
 dependencies = [
  "async-trait",
  "clap",
- "clap_complete",
  "dhat",
  "dialoguer",
  "futures",
