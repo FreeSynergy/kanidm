@@ -204,7 +204,7 @@ image = { version = "0.25.9", default-features = false, features = [
     "webp",
 ] }
 itertools = "0.14.0"
-jsonschema = "0.46.0"
+jsonschema = "0.46.4"
 ldap3_client = "^0.7.1"
 ldap3_proto = { version = "^0.7.1", features = ["serde"] }
 lettre = { version = "0.11.21", default-features = false }
@@ -265,7 +265,7 @@ serde_cbor = { version = "0.13.0", package = "serde_cbor_2" }
 serde-hjson = "1.1.0"
 serde_json = "^1.0.149"
 serde_urlencoded = "^0.7.1"
-serde_with = "3.18.0"
+serde_with = "3.19.0"
 sha-crypt = "0.5.0"
 sha2 = "0.11.0-rc.5"
 subtle = "2.6"
