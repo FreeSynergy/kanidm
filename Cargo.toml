@@ -166,13 +166,13 @@ axum-htmx = { version = "0.8.1", features = ["serde", "guards"] }
 base32 = "^0.5.1"
 base64 = "^0.22.1"
 base64urlsafedata = "0.6.1-dev"
-bitflags = "^2.11.0"
+bitflags = "^2.12.1"
 bytes = "^1.11.1"
 cidr = "0.3.2"
 clap = { version = "4.6.0", features = ["derive", "env"] }
 clap_complete = "^4.6.5"
 # Forced by saffron/cron
-chrono = "^0.4.44"
+chrono = "^0.4.45"
 compact_jwt = "^0.5.6"
 concread = "^0.5.10"
 cron = "0.16.0"
@@ -195,7 +195,7 @@ hashbrown = { version = "0.17.1", features = ["serde", "inline-more"] }
 hex = "^0.4.3"
 http = "1.4.1"
 http-body-util = "0.1"
-hyper = { version = "1.10.0" }
+hyper = { version = "1.10.1" }
 hyper-util = { version = "0.1.20", features = ["server", "tokio"] }
 idlset = "^0.2.5"
 image = { version = "0.25.9", default-features = false, features = [
@@ -265,7 +265,7 @@ serde_cbor = { version = "0.13.0", package = "serde_cbor_2" }
 serde-hjson = "1.1.0"
 serde_json = "^1.0.150"
 serde_urlencoded = "^0.7.1"
-serde_with = "3.20.0"
+serde_with = "3.21.0"
 sha-crypt = "0.5.0"
 sha2 = "0.11.0-rc.5"
 subtle = "2.6"
@@ -298,7 +298,7 @@ utoipa = { version = "5.5.0", features = ["url", "uuid"] }
 utoipa-swagger-ui = { version = "9.0.2", default-features = false, features = [
     "vendored",
 ] }
-uuid = "^1.23.0"
+uuid = "^1.23.2"
 webauthn-authenticator-rs = { version = "0.6.1-dev", default-features = false }
 webauthn-rs = { version = "0.6.1-dev", features = ["preview-features"] }
 webauthn-rs-core = "0.6.1-dev"
