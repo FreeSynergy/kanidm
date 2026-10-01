@@ -204,7 +204,7 @@ image = { version = "0.25.9", default-features = false, features = [
     "webp",
 ] }
 itertools = "0.15.0"
-jsonschema = "0.56.0"
+jsonschema = "0.58.2"
 ldap3_client = "^0.8.0"
 ldap3_proto = { version = "^0.8.0", features = ["serde"] }
 lettre = { version = "0.11.22", default-features = false }
@@ -231,7 +231,7 @@ opentelemetry-otlp = { version = "0.32.0", default-features = false, features = 
 ] }
 opentelemetry_sdk = { version = "0.33.0", features = ["rt-tokio"] }
 opentelemetry-semantic-conventions = "0.33.0"
-tracing-opentelemetry = "0.33.0"
+tracing-opentelemetry = "0.34.0"
 tracing-core = "0.1.36"
 peg = "0.8"
 pkg-config = "^0.3.33"
@@ -294,8 +294,8 @@ tracing-subscriber = { version = "^0.3.23", features = ["env-filter"] }
 tracing-forest = { version = "^0.3.1", features = ["defer"] }
 url = "^2.5.8"
 urlencoding = "2.1.3"
-utoipa = { version = "5.5.0", features = ["url", "uuid"] }
-utoipa-swagger-ui = { version = "9.0.2", default-features = false, features = [
+utoipa = { version = "6.0.0", features = ["url", "uuid"] }
+utoipa-swagger-ui = { version = "10.0.1", default-features = false, features = [
     "vendored",
 ] }
 uuid = "^1.23.2"
