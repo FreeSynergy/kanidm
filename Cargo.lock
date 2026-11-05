@@ -572,9 +572,9 @@ dependencies = [
 
 [[package]]
 name = "base64urlsafedata"
-version = "0.6.1-dev"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9283b2d58cdc7bb808295ff4cd7063701b13818a2680e1584ba61e948ab83229"
+checksum = "20256713f6095648a04ee96499a0ea13995e9101deab6cf9ac6c24df8dcb82e3"
 dependencies = [
  "base64 0.21.7",
  "pastey",
@@ -761,9 +761,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.10.0"
+version = "1.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86e055fa6e3e40ad6187ba25b6855eeb635d5271f8e0f0e1e9a5826b8d75bea0"
+checksum = "375989decec1a0fa424442bed520fa12ede43a48475ce8c7417d2c69b32b5f6b"
 dependencies = [
  "find-msvc-tools",
  "jobserver",
@@ -997,15 +997,15 @@ checksum = "cc14f565cf027a105f7a44ccf9e5b424348421a1d8952a8fc9d499d313107789"
 
 [[package]]
 name = "concread"
-version = "0.5.10"
+version = "0.5.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6588e9e68e11207fb9a5aabd88765187969e6bcba98763c40bcad87b2a73e9f5"
+checksum = "b88aef0640e59c9e54c78c4a52ac801436025a7f6f9ba522cedd90c6eb26e8a1"
 dependencies = [
  "crossbeam-epoch",
  "crossbeam-queue",
  "crossbeam-utils",
  "foldhash 0.2.0",
- "lru 0.16.4",
+ "lru",
  "smallvec",
  "sptr",
  "tokio",
@@ -3704,7 +3704,7 @@ name = "kanidm_lib_crypto"
 version = "1.11.0-dev"
 dependencies = [
  "base64 0.23.1",
- "base64urlsafedata 0.6.1-dev",
+ "base64urlsafedata 0.6.2",
  "crypto-glue",
  "hex",
  "kanidm-hsm-crypto",
@@ -3869,7 +3869,7 @@ name = "kanidmd_lib"
 version = "1.11.0-dev"
 dependencies = [
  "base64 0.23.1",
- "base64urlsafedata 0.6.1-dev",
+ "base64urlsafedata 0.6.2",
  "bitflags 2.13.2",
  "compact_jwt",
  "concread",
@@ -4011,9 +4011,9 @@ dependencies = [
 
 [[package]]
 name = "ldap3_client"
-version = "0.8.1"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "65926630ac746f0f79e15241a3ba21a9c8a39dad5c12aa894a97b30448bdb8a5"
+checksum = "7a04fdb6f2b263c0fb6613a2f3ce20ad354ff8b1c5c451a6491848d44054d1e5"
 dependencies = [
  "base64 0.22.1",
  "futures-util",
@@ -4031,9 +4031,9 @@ dependencies = [
 
 [[package]]
 name = "ldap3_lber"
-version = "0.8.1"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf85b08fb467260c0f8f305b30e819cf3e9584f0f50f2879fbec9bc58f639504"
+checksum = "604412430e6b31b59308bf535abda1cab41cbff8047f8c6054527ea8aa8a515c"
 dependencies = [
  "bytes",
  "nom 7.1.3",
@@ -4041,9 +4041,9 @@ dependencies = [
 
 [[package]]
 name = "ldap3_proto"
-version = "0.8.1"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "105256b138a7ed84ac1ae375870eae23be5f8fed16ca172ae5f1c1aa37bd4242"
+checksum = "0c6ad762d9cf62b815ed8022a088c78733f7b25059ee76fe8cd0de8df609ebd6"
 dependencies = [
  "base64 0.22.1",
  "bytes",
@@ -4228,15 +4228,6 @@ name = "log"
 version = "0.4.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897"
-
-[[package]]
-name = "lru"
-version = "0.16.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7f66e8d5d03f609abc3a39e6f08e4164ebf1447a732906d39eb9b99b7919ef39"
-dependencies = [
- "hashbrown 0.16.1",
-]
 
 [[package]]
 name = "lru"
@@ -6134,7 +6125,7 @@ dependencies = [
 name = "scim_proto"
 version = "1.11.0-dev"
 dependencies = [
- "base64urlsafedata 0.6.1-dev",
+ "base64urlsafedata 0.6.2",
  "peg",
  "serde",
  "serde_json",
@@ -6582,9 +6573,9 @@ dependencies = [
 
 [[package]]
 name = "smartstring"
-version = "1.0.1"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fb72c633efbaa2dd666986505016c32c3044395ceaf881518399d2f4127ee29"
+checksum = "a155190f9c039a1e9b6e92efbfa50ae68daad98a0fd6d5521a5a09ef782383e8"
 dependencies = [
  "autocfg",
  "serde",
@@ -6631,7 +6622,7 @@ dependencies = [
  "kanidmd_core",
  "kanidmd_testkit",
  "libc",
- "lru 0.19.0",
+ "lru",
  "nix",
  "notify-debouncer-full",
  "prctl",
@@ -7118,13 +7109,14 @@ checksum = "7d56353a2a665ad0f41a421187180aab746c8c325620617ad883a99a1cbe66d2"
 
 [[package]]
 name = "tonic"
-version = "0.14.6"
+version = "0.14.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ac2a5518c70fa84342385732db33fb3f44bc4cc748936eb5833d2df34d6445ef"
+checksum = "e2cdfc673aabd30fe8fee92e65837b644c37c5d47f0f97ae6d5e0f1237d15e1b"
 dependencies = [
  "async-trait",
  "base64 0.22.1",
  "bytes",
+ "h2",
  "http",
  "http-body",
  "http-body-util",
@@ -7136,6 +7128,7 @@ dependencies = [
  "sync_wrapper",
  "tokio",
  "tokio-stream",
+ "tokio-util",
  "tower",
  "tower-layer",
  "tower-service",
