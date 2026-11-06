@@ -1,8 +1,11 @@
 name: Sync Upstream
 
+# Manual only. The daily schedule failed every day: the GITHUB_TOKEN may not push changes to
+# .github/workflows/, and upstream changes those files often. To sync, either run this workflow with a
+# repository secret SYNC_TOKEN (a token with the `workflow` scope), or sync locally:
+#   git remote add upstream https://github.com/kanidm/kanidm.git && git fetch upstream master
+#   git merge upstream/master --no-edit && git push origin main
 on:
-  schedule:
-    - cron: '0 4 * * *'  # daily at 04:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -11,12 +14,21 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Require a token that may push workflow files
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_TOKEN }}
+        run: |
+          if [ -z "$SYNC_TOKEN" ]; then
+            echo "::error::Set the repository secret SYNC_TOKEN (scope: workflow), or sync locally (see the comment at the top)."
+            exit 1
+          fi
+
       - name: Checkout fork
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNC_TOKEN }}
 
       - name: Fetch upstream
         run: |
@@ -26,7 +38,7 @@ jobs:
       - name: Merge upstream
         run: |
           git config user.name "FreeSynergy Bot"
-          git config user.email "bot@freesynergy.net"
+          git config user.email "support@freesynergy.net"
           git merge upstream/master --no-edit --allow-unrelated-histories -X theirs
 
       - name: Push to fork
